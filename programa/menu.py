@@ -1,5 +1,3 @@
-from validador import Validador
-
 class Menu:
     #contructor
     def __init__(self, usuario_actual = None, gestor = None, validador = None):

@@ -15,7 +15,7 @@ class Usuario:
     def validar_login(self, email, contraseña):
         return self.email == email and self.contraseña == contraseña
     
-    def ver_datos(self):
+    def __str__(self):
         return f"\nID: {self.id}\nNombre completo: {self.apellido}, {self.nombre}\nEmail: {self.email}\nRol: {self.rol}\nDni: {self.dni}"
 
 

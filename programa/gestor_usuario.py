@@ -22,7 +22,7 @@ class Gestor_usuario:
     def buscar_usuario(self, id):
         for u in self.usuarios:
             if u.id == id:
-                print(u.ver_datos())
+                print(u)
 
     def listar_usuarios(self):
         for u in self.usuarios:
