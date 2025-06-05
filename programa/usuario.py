@@ -18,10 +18,3 @@ class Usuario:
     def ver_datos(self):
         return f"\nID: {self.id}\nNombre completo: {self.apellido}, {self.nombre}\nEmail: {self.email}\nRol: {self.rol}\nDni: {self.dni}"
 
-
-    # def modificar_datos(self, nuevo_self): 
-    #(LUEGO AGREGARLO)
-    #     self.nombre = nuevo_self.nombre
-    #     self.apellido = nuevo_self.apellido
-    #     self.email = nuevo_self.email
-    #     self.contraseña = nuevo_self.contraseña

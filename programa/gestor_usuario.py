@@ -16,8 +16,15 @@ class Gestor_usuario:
 
     def login_usuario(self, email, contraseña):
         for u in self.usuarios:
-            if u.validar_login(email, contraseña):
-                return u
+            if u.email == email:
+                if u.contraseña == contraseña:
+                    print(f"✅ Bienvenido, {u.nombre}!\n")
+                    return u
+                else:
+                    print("❌ Contraseña incorrecta. ")
+                    return None
+        print("❌ Credenciales inválidas.")
+        return None
 
     def buscar_usuario(self, id):
         for u in self.usuarios:
@@ -35,10 +42,21 @@ class Gestor_usuario:
                 return True
         return False
 
-    def guardar_cambios(self):
-        pass
-    #esto tendría que commitear los cambios a la base de datos para que se guarde?
-
+    def modificar_datos(self, id, dato_opcion, dato_valor):
+        for u in self.usuarios:
+            if u.id == id:
+                if dato_opcion==1:
+                    u.nombre=dato_valor
+                    return True
+                elif dato_opcion==2:
+                    u.apellido=dato_valor
+                    return True
+                elif dato_opcion==3:
+                    u.contraseña=dato_valor
+                    return True
+        return False
+                
+            
     def modificar_rol(self, id, rol):
         for u in self.usuarios:
             if u.id == id:
