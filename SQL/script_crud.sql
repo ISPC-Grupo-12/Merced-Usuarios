@@ -1,22 +1,40 @@
 -- CONSULTAS SQL
 
---CREAR LA TABLA
+--CREAR LA TABLA USUARIOS
 
 DROP TABLE IF EXISTS usuarios;
+DROP TABLE IF EXISTS rol;
 
 CREATE TABLE usuarios (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL,
-    apellido TEXT NOT NULL,
-    email TEXT UNIQUE NOT NULL,
-    contraseña TEXT NOT NULL,
-    rol TEXT CHECK(rol IN ('admin', 'usuario')) NOT NULL
+    Id_Usuario INT PRIMARY KEY AUTO_INCREMENT,
+    Rol_Id INT NOT NULL,
+    Nombre VARCHAR(50) NOT NULL,
+    Apellido VARCHAR(50) NOT NULL,
+    Email VARCHAR(50) UNIQUE NOT NULL,
+    Contraseña VARCHAR(50) NOT NULL,
+    DNI VARCHAR(50),
+    Estado BIT DEFAULT 1,
+    FechaRegistro DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (Rol_Id) REFERENCES rol(Id_Rol)
 );
+
+--CREAR LA TABLA ROLES
+
+CREATE TABLE rol (
+    Id_Rol INT PRIMARY KEY,
+    Descripcion VARCHAR(50) NOT NULL,
+    FechaRegistro DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+--INSERTAR ROLES
+
+INSERT INTO rol (Id_Rol, Descripcion) VALUES (1, 'admin');
+INSERT INTO rol (Id_Rol, Descripcion) VALUES (2, 'usuario');
 
 --REGISTRAR USUARIOS
 
-INSERT INTO usuarios (nombre, apellido, email, contraseña, rol)
-VALUES ('Pedro', 'González', 'pedro@gmail.com', 'pass1234', 'admin');
+INSERT INTO usuarios (Rol_id, Nombre, Apellido, Email, Contraseña, DNI)
+VALUES (1, 'Pedro', 'González', 'pedro@gmail.com', 'pass1234', '12345678');
 
 --BUSCAR USUARIOS
 
@@ -44,8 +62,8 @@ WHERE id = 1;
 --Modificar rol
 
 UPDATE usuarios
-SET rol = 'usuario'
-WHERE id = 1;
+SET Rol_id = 2
+WHERE id_usuario = 1;
 
 --ELIMINAR USUARIO
 
