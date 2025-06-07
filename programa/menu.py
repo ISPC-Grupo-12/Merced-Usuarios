@@ -22,7 +22,7 @@ class Menu:
         while True:
             opcion = self.mostrar_menu(opciones[:]) #[:] para copiar.
             if opcion == 1:
-                print("\n🔐 INICIO DE SESIÓN".center(50, "-"))
+                print("\n🔐 INICIO DE SESIÓN\n".center(50, "-"))
                 email = input("\nIngresar email: ") 
                 while not self.validador.validar_email(email):  #Revisa si el formato del email recibido es correcto
                     email = input("\nIngresar un email correcto: ") 
@@ -36,16 +36,22 @@ class Menu:
                     else: 
                         self.menu_estandar()
             elif opcion == 2:
-                print("\n📝 REGISTRO DE USUARIO".center(50, "-"))
+                print("\n📝 REGISTRO DE USUARIO\n".center(50, "-"))
                 nombre = input("\nIngrese su nombre: ")
+                while not self.validador.validar_str(nombre):
+                    nombre = input("\nIngrese un nombre válido: ")
                 apellido = input("Ingrese su apellido: ")
+                while not self.validador.validar_str(apellido):
+                    apellido = input("\nIngrese un apellido válido: ")
+                dni = input("Ingresar número de documento: ")
+                while not self.validador.validar_dni(dni):
+                    dni = input("\nIngresar un número de documento válido: ")
                 email = input("Ingrese su email: ")
                 while not self.validador.validar_email(email):  
                     email = input("\nIngresar un email correcto: ") 
                 contraseña = input("Ingresar una contraseña que incluya letras y numeros:")  
                 while not self.validador.validar_contraseña(contraseña): 
                     contraseña = input("Ingresar una contraseña correcta: ") 
-                dni = input("Ingresar número de documento: ")
                 self.gestor.registrar_usuario(nombre, apellido, email, contraseña, dni)
                 print(f"✅ Registro exitoso")
                 
@@ -99,6 +105,8 @@ class Menu:
                     break
             elif opcion == 3: #segun la eleccion del usuario se modificará uno de sus datos personales
                 opcion_dato= self.mostrar_menu(opciones_datos[:])
+                if opcion_dato == 4:
+                    break
                 nuevo_dato=input(f"Por favor, ingrese el nuevo dato para {opciones_datos[opcion_dato - 1]}: ")
                 if opcion_dato==3:
                     while not self.validador.validar_contraseña(nuevo_dato):
