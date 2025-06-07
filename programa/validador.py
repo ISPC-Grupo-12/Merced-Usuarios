@@ -24,4 +24,11 @@ class Validador:
         contiene_numeros= any(caracter.isdigit() for caracter in contraseña)
         return contiene_letra and contiene_numeros             
     
-    
+    def validar_dni(self, dni):
+        patron = r"^\d{8}$"
+        return re.match(patron, dni) is not None
+
+    def validar_str(self, cadena):
+        patron = r"^[a-zA-Z ]+$"
+        return re.match(patron, cadena) is not None
+        

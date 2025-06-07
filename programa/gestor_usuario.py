@@ -33,7 +33,7 @@ class Gestor_usuario:
 
     def listar_usuarios(self):
         for u in self.usuarios:
-            print(u.ver_datos())
+            print(u)
 
     def eliminar_usuario(self, id):
         for u in self.usuarios:
