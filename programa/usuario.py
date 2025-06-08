@@ -16,5 +16,5 @@ class Usuario:
         return self.email == email and self.contraseña == contraseña
     
     def __str__(self):
-        return f"\nID: {self.id}\nNombre completo: {self.apellido}, {self.nombre}\nEmail: {self.email}\nRol: {self.rol}\nDni: {self.dni}"
+        return f"\nID: {self.id}\nNombre completo: {self.apellido}, {self.nombre}\nDni: {self.dni}\nEmail: {self.email}\nRol: {self.rol}"
 
