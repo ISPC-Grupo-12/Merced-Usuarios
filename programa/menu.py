@@ -73,6 +73,8 @@ class Menu:
                 if opcion <= len(roles):
                     if (self.gestor.modificar_rol(id, roles[opcion- 1])):
                         print(f"Se modificó el rol a {roles[opcion- 1]} con éxito.")
+                        self.usuario_actual = None
+                        break
                     else:
                         print(f"❌ No se encontró ningún usuario con el ID: {id}")
             elif opcion == 3:
@@ -111,7 +113,6 @@ class Menu:
                 if opcion_dato==3:
                     while not self.validador.validar_contraseña(nuevo_dato):
                         nuevo_dato=str(input(f"Por favor, ingrese el nuevo dato para {opciones_datos[opcion_dato -1]}: "))
-                    continue
                 if (self.gestor.modificar_datos(self.usuario_actual.id, opcion_dato, nuevo_dato )):
                     print("✅ Su cambio a sido realizado con éxito.")
                     continue
