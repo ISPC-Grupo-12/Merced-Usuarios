@@ -13,7 +13,7 @@ CREATE TABLE Usuario (
     Nombre VARCHAR(50),
     Apellido VARCHAR(50),
     Email VARCHAR(50) UNIQUE,
-    Contrasena VARCHAR(50), -- corregido: sin la ñ
+    Contrasena VARCHAR(50), 
     DNI VARCHAR(50),
     Estado BIT,
     FechaRegistro DATETIME DEFAULT CURRENT_TIMESTAMP,
