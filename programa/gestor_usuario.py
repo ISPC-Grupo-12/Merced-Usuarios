@@ -1,5 +1,5 @@
 from usuario import Usuario
-
+from rol import Rol
 class Gestor_usuario:
 #contructor
     def __init__(self, usuarios):
@@ -19,7 +19,8 @@ class Gestor_usuario:
             id = self.__usuarios[len(self.__usuarios) - 1].id + 1 #Esto será identity cuando tengamos una db.
         else: 
             id = 1
-        nuevo_usuario = Usuario (id, nombre, apellido, email, contraseña, dni)
+        rol_estandar = Rol("Estándar")
+        nuevo_usuario = Usuario (id, nombre, apellido, email, contraseña, dni, rol_estandar)
         self.__usuarios.append(nuevo_usuario)
 
     def login_usuario(self, email, contraseña):
@@ -37,7 +38,7 @@ class Gestor_usuario:
     def buscar_usuario(self, id):
         for u in self.__usuarios:
             if u.id == id:
-                print(u)
+                return u
 
     def listar_usuarios(self):
         for u in self.__usuarios:

@@ -1,12 +1,13 @@
+from rol import Rol
 class Usuario:
     #contructor
-    def __init__(self, id, nombre, apellido, email, contraseña, dni):
+    def __init__(self, id, nombre, apellido, email, contraseña, dni, rol: Rol):
         self.__id = id
         self.__nombre = nombre
         self.__apellido = apellido
         self.__email = email
         self.__contraseña = contraseña
-        self.__rol = "Estándar"
+        self.__rol = rol
         self.__dni = dni
 
     @property
@@ -47,7 +48,7 @@ class Usuario:
 
     @property
     def rol(self):
-        return self.__rol
+        return self.__rol.tipo
     @rol.setter
     def rol(self, nuevo_rol):
         self.__rol = nuevo_rol
