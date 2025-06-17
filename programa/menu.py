@@ -62,7 +62,7 @@ class Menu:
 
     def menu_admin(self):
         opciones = ["Ver lista de usuarios", "Cambiar rol a un usuario", "Eliminar usuario"] #Agregar "Buscar usuario por id"
-        roles = ["Admin", "Estándar"]
+        roles = ["Estándar", "Admin"]  #Invertimos el orden para que coincida con las opciones de más abajo
         while True:
             opcion = self.mostrar_menu(opciones[:])
             if opcion == 1:
@@ -71,7 +71,7 @@ class Menu:
                 id = int(input("\nIngresar número de id: ")) 
                 opcion = self.mostrar_menu(roles[:])
                 if opcion <= len(roles):
-                    if (self.gestor.modificar_rol(id, roles[opcion- 1])):
+                    if (self.gestor.modificar_rol(id, opcion- 1)):  #En vez de revisar un str, revisa el id del Rol
                         print(f"Se modificó el rol a {roles[opcion- 1]} con éxito.")
                         self.usuario_actual = None
                         break
@@ -100,9 +100,9 @@ class Menu:
             if opcion == 1:
                 id = self.usuario_actual.id
                 print(100*"=","\nDatos del usuario: ")
-                self.gestor.buscar_usuario(id)
+                print(self.gestor.buscar_usuario(id))
             elif opcion == 2:
-                if (self.gestor.modificar_rol(self.usuario_actual.id, "Admin")):
+                if (self.gestor.modificar_rol(self.usuario_actual.id, 1)):  #En vez de asignar un str al rol, se le asigna el id del Rol
                     print("✅ Su cambio a sido realizado con éxito.")
                     break
             elif opcion == 3: #segun la eleccion del usuario se modificará uno de sus datos personales

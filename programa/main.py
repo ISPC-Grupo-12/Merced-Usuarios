@@ -10,8 +10,10 @@ def mostrar_bienvenida():
 
 def main():
     mostrar_bienvenida()
-    menu = Menu(None, Gestor_usuario([]), Validador())
-
+    usuarios = []
+    gestor = Gestor_usuario(usuarios)
+    validador = Validador(usuarios)
+    menu = Menu(None, gestor, validador)
     menu.menu_principal()
 
 

@@ -1,12 +1,14 @@
+from rol import Rol #Importo Rol
+
 class Usuario:
     #contructor
-    def __init__(self, id, nombre, apellido, email, contraseña, dni):
+    def __init__(self, id, nombre, apellido, email, contraseña, dni, rol: Rol):
         self.__id = id
         self.__nombre = nombre
         self.__apellido = apellido
         self.__email = email
         self.__contraseña = contraseña
-        self.__rol = "Estándar"
+        self.__rol = rol
         self.__dni = dni
 
     @property
@@ -62,7 +64,7 @@ class Usuario:
 
     #métodos 
     def es_admin(self):
-        return self.__rol == "Admin"
+        return self.__rol.id == 1  #En vez de revistar un str, revisa el id del Rol
     
     def validar_login(self, email, contraseña):
         return self.__email == email and self.__contraseña == contraseña
