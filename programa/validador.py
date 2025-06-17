@@ -1,7 +1,17 @@
 import re  
-
+from usuario import Usuario
 class Validador:
+    def __init__(self, usuarios):
+        self.__usuarios = usuarios
+
+    @property
+    def usuarios(self):
+        return self.__usuarios
     
+    @usuarios.setter
+    def usuarios(self, usuarios):
+        self.__usuarios = usuarios
+        
     def validar_opcion(self, min, max):
         while True:
             try:
@@ -13,9 +23,17 @@ class Validador:
             except ValueError:
                 print("Por favor, ingresá un número válido.\n")
 
-    def validar_email(self, email):
+    def validar_email_patron(self, email):
         patron= r"^[\w\.-]+@[\w\.-]+\.\w+$"
-        return re.match(patron, email) is not None #hace una comparacion basada en el patron para que el email sea veridico
+        return re.match(patron, email) is not None
+            
+        
+    def validar_email_repetido(self, email):
+        for u in self.usuarios:
+                if email== u.email:
+                    return False
+        return True
+    
     
     def validar_contraseña(self,contraseña):
         if len(contraseña)<6:
@@ -26,8 +44,13 @@ class Validador:
     
     def validar_dni(self, dni):
         patron = r"^\d{8}$"
-        return re.match(patron, dni) is not None
-
+        if not re.match(patron, dni):
+            return False
+        for u in self.usuarios:
+            if dni==u.dni:
+                return False
+        return True
+        
     def validar_str(self, cadena):
         patron = r"^[a-zA-Z ]+$"
         return re.match(patron, cadena) is not None

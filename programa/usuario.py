@@ -1,5 +1,4 @@
-from rol import Rol #Importo Rol
-
+from rol import Rol
 class Usuario:
     #contructor
     def __init__(self, id, nombre, apellido, email, contraseña, dni, rol: Rol):

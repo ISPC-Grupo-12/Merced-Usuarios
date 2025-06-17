@@ -10,7 +10,7 @@ def mostrar_bienvenida():
 
 def main():
     mostrar_bienvenida()
-    usuarios = []
+    usuarios= []
     gestor = Gestor_usuario(usuarios)
     validador = Validador(usuarios)
     menu = Menu(None, gestor, validador)

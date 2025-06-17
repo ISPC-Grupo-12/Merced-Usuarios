@@ -1,6 +1,5 @@
 from usuario import Usuario
-from rol import Rol  #Importamos Rol
-
+from rol import Rol
 class Gestor_usuario:
 #contructor
     def __init__(self, usuarios):

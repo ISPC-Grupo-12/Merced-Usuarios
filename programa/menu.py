@@ -24,7 +24,7 @@ class Menu:
             if opcion == 1:
                 print("\n🔐 INICIO DE SESIÓN\n".center(50, "-"))
                 email = input("\nIngresar email: ") 
-                while not self.validador.validar_email(email):  #Revisa si el formato del email recibido es correcto
+                while not self.validador.validar_email_patron(email):  
                     email = input("\nIngresar un email correcto: ") 
                 contraseña = input("Ingresar contraseña:")  
                 while not self.validador.validar_contraseña(contraseña):  
@@ -47,7 +47,7 @@ class Menu:
                 while not self.validador.validar_dni(dni):
                     dni = input("\nIngresar un número de documento válido: ")
                 email = input("Ingrese su email: ")
-                while not self.validador.validar_email(email):  
+                while not self.validador.validar_email_repetido(email) and self.validador.validar_email_patron(email):  
                     email = input("\nIngresar un email correcto: ") 
                 contraseña = input("Ingresar una contraseña que incluya letras y numeros:")  
                 while not self.validador.validar_contraseña(contraseña): 
@@ -61,13 +61,20 @@ class Menu:
 
 
     def menu_admin(self):
-        opciones = ["Ver lista de usuarios", "Cambiar rol a un usuario", "Eliminar usuario"] #Agregar "Buscar usuario por id"
-        roles = ["Estándar", "Admin"]  #Invertimos el orden para que coincida con las opciones de más abajo
+        opciones = ["Ver lista de usuarios", "Buscar usuario por Id", "Cambiar rol a un usuario", "Eliminar usuario"] 
+        roles = ["Admin", "Estándar"]
         while True:
             opcion = self.mostrar_menu(opciones[:])
             if opcion == 1:
                 self.gestor.listar_usuarios()
             elif opcion == 2:
+                id = int(input("\nIngresar número de id del usuario: ")) 
+                usuario = self.gestor.buscar_usuario(id)
+                if usuario is not None:
+                    print(f"Usuario con el id {id}: {usuario}")
+                else:
+                    print(f"❌ No se encontró ningún usuario con el ID: {id}")     
+            elif opcion == 3:
                 id = int(input("\nIngresar número de id: ")) 
                 opcion = self.mostrar_menu(roles[:])
                 if opcion <= len(roles):
@@ -77,7 +84,7 @@ class Menu:
                         break
                     else:
                         print(f"❌ No se encontró ningún usuario con el ID: {id}")
-            elif opcion == 3:
+            elif opcion == 4:
                 id = int(input("\nIngrese número de id del usuario que desea eliminar: ")) 
                 if (self.usuario_actual.id != id):
                     if(self.mostrar_menu(["Confirmar"]) == 1):
