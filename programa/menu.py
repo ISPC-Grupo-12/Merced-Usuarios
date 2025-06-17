@@ -62,7 +62,7 @@ class Menu:
 
     def menu_admin(self):
         opciones = ["Ver lista de usuarios", "Buscar usuario por Id", "Cambiar rol a un usuario", "Eliminar usuario"] 
-        roles = ["Admin", "Estándar"]
+        roles = ["Estandar", "Admin"]
         while True:
             opcion = self.mostrar_menu(opciones[:])
             if opcion == 1:
@@ -78,10 +78,11 @@ class Menu:
                 id = int(input("\nIngresar número de id: ")) 
                 opcion = self.mostrar_menu(roles[:])
                 if opcion <= len(roles):
-                    if (self.gestor.modificar_rol(id, opcion- 1)):  #En vez de revisar un str, revisa el id del Rol
-                        print(f"Se modificó el rol a {roles[opcion- 1]} con éxito.")
-                        self.usuario_actual = None
-                        break
+                    if (self.gestor.modificar_rol(id, opcion - 1)):  #En vez de revisar un str, revisa el id del Rol
+                        print(f"Se modificó el rol a {roles[opcion - 1]} con éxito.")
+                        if (self.usuario_actual.id == id):
+                            self.usuario_actual = None
+                            break
                     else:
                         print(f"❌ No se encontró ningún usuario con el ID: {id}")
             elif opcion == 4:
