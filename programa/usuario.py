@@ -48,7 +48,7 @@ class Usuario:
 
     @property
     def rol(self):
-        return self.__rol.tipo
+        return self.__rol
     @rol.setter
     def rol(self, nuevo_rol):
         self.__rol = nuevo_rol
@@ -63,7 +63,7 @@ class Usuario:
 
     #métodos 
     def es_admin(self):
-        return self.__rol == "Admin"
+        return self.__rol.id == 1  #En vez de revistar un str, revisa el id del Rol
     
     def validar_login(self, email, contraseña):
         return self.__email == email and self.__contraseña == contraseña

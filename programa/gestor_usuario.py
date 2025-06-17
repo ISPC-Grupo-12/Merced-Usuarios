@@ -19,8 +19,8 @@ class Gestor_usuario:
             id = self.__usuarios[len(self.__usuarios) - 1].id + 1 #Esto será identity cuando tengamos una db.
         else: 
             id = 1
-        rol_estandar = Rol("Estándar")
-        nuevo_usuario = Usuario (id, nombre, apellido, email, contraseña, dni, rol_estandar)
+        rol = Rol(0)
+        nuevo_usuario = Usuario (id, nombre, apellido, email, contraseña, dni, rol)
         self.__usuarios.append(nuevo_usuario)
 
     def login_usuario(self, email, contraseña):
@@ -66,10 +66,10 @@ class Gestor_usuario:
         return False
                 
             
-    def modificar_rol(self, id, rol):
+    def modificar_rol(self, id, id_rol): #Agregamos el id_rol y lo colocamos en u.rol = Rol(id_rol) para que busque en el objeto cual es el rol asignado.
         for u in self.__usuarios:
             if u.id == id:
-                u.rol = rol
+                u.rol = Rol(id_rol)
                 return True
         return False
 

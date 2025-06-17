@@ -28,8 +28,8 @@ CREATE TABLE rol (
 
 --INSERTAR ROLES
 
-INSERT INTO rol (Id_Rol, Descripcion) VALUES (1, 'admin');
-INSERT INTO rol (Id_Rol, Descripcion) VALUES (2, 'usuario');
+INSERT INTO rol (Id_Rol, Descripcion) VALUES (1, 'admin'); --Primero poner cero y 1 para que coincida con el id
+INSERT INTO rol (Id_Rol, Descripcion) VALUES (2, 'usuario'); --Segundo el cero = estandar y el 1 = admin
 
 --REGISTRAR USUARIOS
 

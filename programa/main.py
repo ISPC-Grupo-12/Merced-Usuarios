@@ -15,9 +15,6 @@ def main():
     validador = Validador(usuarios)
     menu = Menu(None, gestor, validador)
     menu.menu_principal()
-    menu = Menu(None, Gestor_usuario([]), Validador())
-
-    menu.menu_principal()
 
 
 
